@@ -184,6 +184,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -232,6 +233,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
+            brightness_widget({ type = "arc", program = "xbacklight", tooltip = true }),
             volume_widget({ step = 5, widget_type = 'horizontal_bar', width = 100, margins = 0, shape = 'rounded_bar', with_icon = true, mute_color = beautiful.bg_normal }),
             battery_widget({ show_current_level = true, display_notification = true, margin_right = 5, margin_left = 5 }),
             wibox.widget.systray(),
@@ -356,10 +358,8 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Brighness
-    awful.key({ }, "XF86MonBrightnessDown", function ()
-        awful.util.spawn("xbacklight -dec 10") end),
-    awful.key({ }, "XF86MonBrightnessUp", function ()
-        awful.util.spawn("xbacklight -inc 10") end),
+    awful.key({ }, "XF86MonBrightnessDown", function () brightness_widget:dec() end),
+    awful.key({ }, "XF86MonBrightnessUp", function () brightness_widget:inc() end),
 
     -- Volume Keys
    awful.key({}, "XF86AudioRaiseVolume", function () volume_widget:inc(5) end),
