@@ -193,12 +193,7 @@ local mybattery_widget = battery_widget({
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local myvolume_widget = volume_widget({
   step = 5,
-  widget_type = 'arc',
-  width = 100,
-  margins = 0,
-  shape = 'rounded_bar',
-  with_icon = true,
-  mute_color = beautiful.bg_normal,
+  widget_type = 'arc_special',
   margin_right = 5,
   margin_left = 5
 })
