@@ -113,7 +113,7 @@ else
 end
 
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
@@ -121,11 +121,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -183,8 +183,34 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+local mybattery_widget = battery_widget({
+  show_current_level = true,
+  display_notification = true,
+  margin_right = 5,
+  margin_left = 5
+})
+
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local myvolume_widget = volume_widget({
+  step = 5,
+  widget_type = 'arc',
+  width = 100,
+  margins = 0,
+  shape = 'rounded_bar',
+  with_icon = true,
+  mute_color = beautiful.bg_normal,
+  margin_right = 5,
+  margin_left = 5
+})
+
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+local mybrightness_widget = brightness_widget({
+  type = "arc",
+  program = "xbacklight",
+  tooltip = true,
+  margin_right = 5,
+  margin_left = 5
+})
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -233,9 +259,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
-            brightness_widget({ type = "arc", program = "xbacklight", tooltip = true }),
-            volume_widget({ step = 5, widget_type = 'horizontal_bar', width = 100, margins = 0, shape = 'rounded_bar', with_icon = true, mute_color = beautiful.bg_normal }),
-            battery_widget({ show_current_level = true, display_notification = true, margin_right = 5, margin_left = 5 }),
+            mybrightness_widget,
+            myvolume_widget,
+            mybattery_widget,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
