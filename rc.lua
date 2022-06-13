@@ -226,6 +226,10 @@ local myram_widget = ram_widget({
   margin_left = 5
 })
 
+local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
+local mynet_speed_widget = net_speed_widget({
+})
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -273,6 +277,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
+            mynet_speed_widget,
             mycpu_widget,
             myram_widget,
             mybrightness_widget,
