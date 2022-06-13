@@ -186,7 +186,7 @@ local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 local mybattery_widget = battery_widget({
   show_current_level = true,
   display_notification = true,
-  margin_right = 5,
+  margin_right = 0,
   margin_left = 5
 })
 
@@ -263,11 +263,11 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             mybrightness_widget,
             myvolume_widget,
-            mybattery_widget,
             wibox.widget.systray(),
             mytextclock,
+            mybattery_widget,
+            mylogout_menu_widget,
             s.mylayoutbox,
-            mylogout_menu_widget
         },
     }
 end)
@@ -330,10 +330,13 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
+
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
+    awful.key({ modkey, "Control" }, "l",function () awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/lock.sh") end,
+              {description = "lock pc", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
