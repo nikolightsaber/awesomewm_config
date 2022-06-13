@@ -214,6 +214,12 @@ local mylogout_menu_widget = logout_menu_widget( {
   margin_left = 5
 })
 
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local mycpu_widget = cpu_widget({
+  margin_right = 5,
+  margin_left = 5
+})
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -261,6 +267,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
+            mycpu_widget,
             mybrightness_widget,
             myvolume_widget,
             wibox.widget.systray(),
