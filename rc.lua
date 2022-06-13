@@ -220,6 +220,12 @@ local mycpu_widget = cpu_widget({
   margin_left = 5
 })
 
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local myram_widget = ram_widget({
+  margin_right = 5,
+  margin_left = 5
+})
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -268,6 +274,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             mycpu_widget,
+            myram_widget,
             mybrightness_widget,
             myvolume_widget,
             wibox.widget.systray(),
