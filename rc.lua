@@ -207,6 +207,13 @@ local mybrightness_widget = brightness_widget({
   margin_left = 5
 })
 
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local mylogout_menu_widget = logout_menu_widget( {
+  onlock = function () awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/lock.sh") end,
+  margin_right = 5,
+  margin_left = 5
+})
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -260,6 +267,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
+            mylogout_menu_widget
         },
     }
 end)
