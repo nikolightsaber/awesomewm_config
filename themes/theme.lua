@@ -35,7 +35,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
-theme.wallpaper = "/home/nikolai/Pictures/Wallpapers/205833.jpg"
+theme.wallpaper = "/home/nikolai/Pictures/Wallpapers/tele1.jpg"
 --Signals
 client.connect_signal("focus", function(c)
     c.border_color = theme.border_focus end)
