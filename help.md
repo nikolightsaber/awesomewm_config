@@ -37,6 +37,7 @@ sudo make install
 
 # lock
 sudo apt install i3lock
+mkdir Pictures/tmp
 
 # dmenu
 sudo apt install dmenu
