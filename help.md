@@ -15,3 +15,7 @@ sudo systemctl reset-failed openvpn@belrobotics.ovpn
 
 # See result of execution
 journalctl -u openvpn-client@belrobotics-client.ovpn.service -f -n 20
+
+# Brightness
+brightnessctl
+sudo usermod -aG video nikolai
