@@ -44,3 +44,6 @@ sudo apt install dmenu
 
 # scrot
 sudo apt install scrot
+
+# bluetooth
+https://simpleit.rocks/linux/shell/connect-to-bluetooth-from-cli/
