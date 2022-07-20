@@ -304,7 +304,7 @@ globalkeys = gears.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
-    awful.key({ modkey, "Control" }, "l",function () awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/lock.sh") end,
+    awful.key({ "Mod4" }, "l",function () awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/lock.sh") end,
               {description = "lock pc", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
@@ -550,7 +550,7 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
