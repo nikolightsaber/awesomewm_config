@@ -47,3 +47,6 @@ sudo apt install scrot
 
 # bluetooth
 https://simpleit.rocks/linux/shell/connect-to-bluetooth-from-cli/
+
+# Player
+sudo apt install playerctl
