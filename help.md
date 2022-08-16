@@ -3,6 +3,12 @@
 nmcli dev wifi
 # connect
 iwconfig wlan0 essid name key password
+second comment
+https://unix.stackexchange.com/questions/92799/connecting-to-wifi-network-through-command-line
+nmcli dev wifi connect RTKWifi_test2 ifname wlx40a5ef05a28
+nmcli dev wifi connect RTKWifi_test2 ifname wlx40a5ef05a28 password
+nmcli device show wlx40a5ef05a28c
+nmcli con up <mySSID>
 
 # openvpn:
 /etc/openvpn/client/belrobotics-client.ovpn.conf
