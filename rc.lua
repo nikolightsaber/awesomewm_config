@@ -372,7 +372,11 @@ globalkeys = gears.table.join(
    awful.key({}, "XF86AudioNext", function()
      awful.util.spawn("playerctl next", false) end),
    awful.key({}, "XF86AudioPrev", function()
-     awful.util.spawn("playerctl previous", false) end)
+     awful.util.spawn("playerctl previous", false) end),
+   awful.key({}, "Print", function()
+     awful.util.spawn("scrot -e 'mv $f ~/Pictures", false) end),
+   awful.key({ "Shift" }, "Print", function()
+     awful.util.spawn("scrot -s -e 'mv $f ~/Pictures", false) end)
 )
 
 clientkeys = gears.table.join(
@@ -502,7 +506,6 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
-
     -- Floating clients.
     { rule_any = {
         instance = {
