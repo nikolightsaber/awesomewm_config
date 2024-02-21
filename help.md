@@ -56,3 +56,13 @@ https://simpleit.rocks/linux/shell/connect-to-bluetooth-from-cli/
 
 # Player
 sudo apt install playerctl
+
+# DNS private address answer fix
+```
+[Match]
+Name=tun0
+
+[Resolve]
+DNS=10.250.0.1
+Domains=~vpn.belrobotics.com ~vpn.yamabikorobots.net
+```
