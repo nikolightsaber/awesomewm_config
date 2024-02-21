@@ -425,13 +425,24 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"})
 )
 
+local goto_tag_special = function (s, i)
+  local tag = s.tags[i]
+  if tag == nil then
+    return false
+  end
+  if next(tag:clients()) == nil then
+    return false
+  end
+  tag:view_only()
+  return true
+end
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
-        awful.key({ modkey }, "#" .. i + 9,
+        awful.key({ modkey, "Control"  }, "#" .. i + 9,
                   function ()
                         local screen = awful.screen.focused()
                         local tag = screen.tags[i]
@@ -441,12 +452,21 @@ for i = 1, 9 do
                   end,
                   {description = "view tag #"..i, group = "tag"}),
         -- Toggle tag display.
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
+        awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                      local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
-                      if tag then
-                         awful.tag.viewtoggle(tag)
+                      local focused_screen = awful.screen.focused()
+                      if (goto_tag_special(focused_screen, i)) then
+                          return;
+                      end
+                      for s in screen do
+                          if (s == focused_screen) then
+                              goto continue
+                          end
+                          if (goto_tag_special(s, i)) then
+                            awful.screen.focus(s)
+                            return;
+                          end
+                          ::continue::
                       end
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
