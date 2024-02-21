@@ -52,7 +52,7 @@ end
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
