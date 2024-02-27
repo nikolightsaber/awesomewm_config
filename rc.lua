@@ -223,14 +223,14 @@ awful.screen.connect_for_each_screen(function(s)
   -- Add widgets to the wibox
   s.mywibox:setup {
     layout = wibox.layout.align.horizontal,
-    {     -- Left widgets
+    { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       mylauncher,
       s.mytaglist,
       s.mypromptbox,
     },
-    s.mytasklist,     -- Middle widget
-    {                 -- Right widgets
+    s.mytasklist, -- Middle widget
+    {             -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       mykeyboardlayout,
       -- mynet_speed_widget,
@@ -437,13 +437,12 @@ clientkeys = gears.table.join(
 local goto_tag_special = function(s, i)
   local tag = s.tags[i]
   if tag == nil then
-    return false
+    return nil
   end
   if next(tag:clients()) == nil then
-    return false
+    return nil
   end
-  tag:view_only()
-  return true
+  return tag
 end
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
@@ -464,21 +463,29 @@ for i = 1, 9 do
     awful.key({ modkey }, "#" .. i + 9,
       function()
         local focused_screen = awful.screen.focused()
-        if (goto_tag_special(focused_screen, i)) then
+        local tag = goto_tag_special(focused_screen, i)
+        if (tag) then
+          tag:view_only()
           return;
         end
         for s in screen do
           if (s == focused_screen) then
             goto continue
           end
-          if (goto_tag_special(s, i)) then
+          tag = goto_tag_special(s, i);
+          if (tag) then
             awful.screen.focus(s)
+            tag:view_only()
             return;
           end
           ::continue::
         end
+        tag = focused_screen.tags[i]
+        if tag then
+          tag:view_only()
+        end
       end,
-      { description = "view tag #" .. i, group = "tag" }),
+      { description = "view over multi screen tag #" .. i, group = "tag" }),
     -- Move client to tag.
     awful.key({ modkey, "Shift" }, "#" .. i + 9,
       function()
@@ -543,8 +550,8 @@ awful.rules.rules = {
   {
     rule_any = {
       instance = {
-        "DTA",     -- Firefox addon DownThemAll.
-        "copyq",   -- Includes session name in class.
+        "DTA",   -- Firefox addon DownThemAll.
+        "copyq", -- Includes session name in class.
         "pinentry",
       },
       class = {
@@ -552,9 +559,9 @@ awful.rules.rules = {
         "Blueman-manager",
         "Gpick",
         "Kruler",
-        "MessageWin",    -- kalarm.
+        "MessageWin",  -- kalarm.
         "Sxiv",
-        "Tor Browser",   -- Needs a fixed window size to avoid fingerprinting by screen size.
+        "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
         "Wpa_gui",
         "veromix",
         "xtightvncviewer" },
@@ -562,12 +569,12 @@ awful.rules.rules = {
       -- Note that the name property shown in xprop might be set slightly after creation of the client
       -- and the name shown there might not match defined rules here.
       name = {
-        "Event Tester",   -- xev.
+        "Event Tester", -- xev.
       },
       role = {
-        "AlarmWindow",     -- Thunderbird's calendar.
-        "ConfigManager",   -- Thunderbird's about:config.
-        "pop-up",          -- e.g. Google Chrome's (detached) Developer Tools.
+        "AlarmWindow",   -- Thunderbird's calendar.
+        "ConfigManager", -- Thunderbird's about:config.
+        "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
       }
     },
     properties = { floating = true }
