@@ -248,6 +248,20 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
+tag.connect_signal("request::screen", function(t)
+  local s = t.screen
+  local os = nil
+  for is in screen do
+    if s ~= is then
+      os = is
+    end
+  end
+  local i = t.index
+  for _, c in ipairs(t:clients()) do
+    c:move_to_tag(os.tags[i])
+  end
+end)
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
   awful.button({}, 4, awful.tag.viewnext),
