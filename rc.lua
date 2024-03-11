@@ -417,7 +417,16 @@ clientkeys = gears.table.join(
     { description = "toggle floating", group = "client" }),
   awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
     { description = "move to master", group = "client" }),
-  awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
+  awful.key({ modkey, }, "o", function(c)
+      local ti = c.first_tag.index
+      local si = c.screen.index
+      -- one indexing lol
+      local s = screen[(si % screen.count()) + 1]
+      local t = s.tags[ti]
+      c:move_to_tag(t)
+      awful.screen.focus(s)
+    t:view_only()
+    end,
     { description = "move to screen", group = "client" }),
   awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
