@@ -186,6 +186,8 @@ local mycpu_widget = cpu_widget({
 --   timeout = 1
 -- })
 
+awful.screen.set_auto_dpi_enabled(true)
+
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
   set_wallpaper(s)
