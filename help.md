@@ -87,3 +87,19 @@ In path
 
 `ln -s ../kitty.app/bin/kitty kitty`
 `ln -s ../../.config/kitty/toggle_kitty_theme.sh toggle_kitty_theme.sh`
+
+# submodule
+
+add `sparceCheckout = true` to `.git/modules/awesome-wm-widgets/config`
+
+and `.git/modules/awesome-wm-widgets/info/sparse-checkout`
+
+```
+brightness-widget
+volume-widget
+cpu-widget
+battery-widget
+battery-widget
+net-speed-widget
+logout-menu-widget
+```
