@@ -66,3 +66,24 @@ Name=tun0
 DNS=10.250.0.1
 Domains=~vpn.belrobotics.com ~vpn.yamabikorobots.net
 ```
+
+# fonts
+
+```
+ls .local/share/fonts/
+JetBrainsMono-BoldItalic.ttf  JetBrainsMono-Regular.ttf
+JetBrainsMono-Bold.ttf        SymbolsNerdFontMono-Regular.ttf
+JetBrainsMono-Italic.ttf      SymbolsNerdFont-Regular.ttf
+```
+
+# kitty
+`ln -s awesome/kitty kitty`
+
+install
+
+`https://sw.kovidgoyal.net/kitty/binary/`
+
+In path
+
+`ln -s ../kitty.app/bin/kitty kitty`
+`ln -s ../../.config/kitty/toggle_kitty_theme.sh toggle_kitty_theme.sh`
