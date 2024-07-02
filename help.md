@@ -103,3 +103,7 @@ battery-widget
 net-speed-widget
 logout-menu-widget
 ```
+
+# Natural scrolling
+
+in `/usr/share/X11/xorg.conf.d/40-libinput.conf` add `Option "NaturalScrolling" "True"` to touchpad
