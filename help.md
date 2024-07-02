@@ -26,6 +26,7 @@ journalctl -u openvpn-client@belrobotics-client.ovpn.service -f -n 20
 brightnessctl
 directly /sys/class/backlight/intel_backlight/brightness
 sudo usermod -aG video nikolai
+`sudo apt install brightnessctl`
 
 # set .Xresources
 dpi 96 seems good
@@ -50,6 +51,9 @@ sudo apt install dmenu
 
 # scrot
 sudo apt install scrot
+
+# audio
+`sudo apt install pavucontrol`
 
 # bluetooth
 https://simpleit.rocks/linux/shell/connect-to-bluetooth-from-cli/
@@ -107,3 +111,5 @@ logout-menu-widget
 # Natural scrolling
 
 in `/usr/share/X11/xorg.conf.d/40-libinput.conf` add `Option "NaturalScrolling" "True"` to touchpad
+
+# install git delta
