@@ -44,6 +44,7 @@ sudo make install
 
 # lock
 sudo apt install i3lock
+sudo apt install imagemagick
 mkdir Pictures/tmp
 
 # dmenu
