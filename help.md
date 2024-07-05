@@ -63,6 +63,8 @@ https://simpleit.rocks/linux/shell/connect-to-bluetooth-from-cli/
 sudo apt install playerctl
 
 # DNS private address answer fix
+https://wiki.archlinux.org/title/systemd-resolved
+in /etc/systemd/resolved.conf.d/dns_servers.conf
 ```
 [Match]
 Name=tun0
