@@ -115,6 +115,10 @@ logout-menu-widget
 
 in `/usr/share/X11/xorg.conf.d/40-libinput.conf` add `Option "NaturalScrolling" "True"` to touchpad
 
+# Touchpad speed
+
+in `/usr/share/X11/xorg.conf.d/40-libinput.conf` add `Option "AccelSpeed" "0.2"` to touchpad
+
 # install git delta
 
 
