@@ -186,7 +186,6 @@ local mycpu_widget = cpu_widget({
 --   timeout = 1
 -- })
 
-awful.screen.set_auto_dpi_enabled(true)
 
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -427,7 +426,7 @@ clientkeys = gears.table.join(
       local t = s.tags[ti]
       c:move_to_tag(t)
       awful.screen.focus(s)
-    t:view_only()
+      t:view_only()
     end,
     { description = "move to screen", group = "client" }),
   awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
