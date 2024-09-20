@@ -376,6 +376,10 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "p", function() menubar.show() end,
     { description = "show the menubar", group = "launcher" }),
 
+  awful.key({ modkey }, "c", function()
+    awful.util.spawn("clipmenu", false)
+  end, { description = "show the menubar", group = "launcher" }),
+
   -- Brighness
   awful.key({}, "XF86MonBrightnessDown", function() brightness_widget:dec() end),
   awful.key({}, "XF86MonBrightnessUp", function() brightness_widget:inc() end),
@@ -633,3 +637,4 @@ end)
 
 -- Auto Start
 awful.spawn.with_shell("compton --config ~/.config/awesome/compton.conf")
+awful.spawn.with_shell("clipmenud")

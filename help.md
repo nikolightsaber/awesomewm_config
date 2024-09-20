@@ -126,4 +126,9 @@ in `/usr/share/X11/xorg.conf.d/40-libinput.conf` add `Option "AccelSpeed" "0.2"`
 ```bash
 alias single_screen='echo -e "Xcursor.size: 36\nXft.dpi: 144" > ~/.Xresources && sync && xrdb .Xresources && xrandr -s 0 && echo "awesome.restart()" | awesome-client'
 alias ye_screen='echo -e "Xcursor.size: 24\nXft.dpi: 96" > ~/.Xresources && sync && xrdb .Xresources && xrandr --output eDP-1 --auto --output HDMI-1 --auto --above eDP-1 && echo "awesome.restart()" | awesome-client'
-`
+```
+
+# ClipMenu
+- clone repo `https://github.com/cdown/clipmenu/`
+- `sudo apt-get install libxcomposite-dev` for Xfixes
+
